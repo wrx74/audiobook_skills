@@ -1,0 +1,4 @@
+interface:
+  display_name: "OmniVoice Audiobook Builder"
+  short_description: "Directed OmniVoice with one stable voice"
+  default_prompt: "Use $omnivoice-audiobook-builder to render this Russian text with one stable directed voice and verified audio."

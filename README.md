@@ -1,6 +1,6 @@
 # Audiobook Skills
 
-Набор Codex skills для локального создания аудиокниг.
+Набор Codex skills для локального создания аудиокниг с Silero TTS и OmniVoice.
 
 ## silero-audiobook-builder
 
@@ -43,6 +43,26 @@ pip install silero
 
 Для автономного хранения модель `v5_5_ru` доступна напрямую: [v5_5_ru.pt](https://models.silero.ai/models/tts/ru/v5_5_ru.pt). Голос `xenia` выбирается при синтезе. Сам файл модели, PyTorch и FFmpeg в этот репозиторий не входят.
 
+## omnivoice-audiobook-builder
+
+Skill предназначен для русской озвучки и аудиокниг через OmniVoice в локальном приложении VoiceStudio. Он помогает:
+
+- сохранять один стабильный клонированный голос по всему тексту;
+- управлять контекстными паузами и режиссёрской пунктуацией;
+- отделять исходный текст от подготовленной версии для синтеза;
+- воспроизводимо использовать профиль 48 шагов, seed `42`, 48 кГц mono;
+- проверять текст, WAV, параметры модели и полное декодирование результата.
+
+В комплект входит `scripts/render_omnivoice.py`, работающий с локальным API VoiceStudio и формирующий JSON-отчёт проверки.
+
+## Где взять OmniVoice
+
+OmniVoice устанавливается как движок внутри открытого локального приложения [VoiceStudio](https://github.com/debpalash/VoiceStudio). Готовые версии для Windows и других поддерживаемых платформ опубликованы в разделе [VoiceStudio Releases](https://github.com/debpalash/VoiceStudio/releases).
+
+После установки запустите VoiceStudio, выберите или загрузите движок **OmniVoice** в разделе моделей. Skill обращается к локальному API VoiceStudio; проверенная конфигурация использует `http://127.0.0.1:3900`, русский язык и клонирование по WAV-референсу с его точной расшифровкой.
+
+VoiceStudio, модель OmniVoice и голосовые референсы в этот репозиторий не входят.
+
 
 ## Аудиопример
 
@@ -54,25 +74,28 @@ pip install silero
 
 ## Установка
 
-Скопируйте папку `silero-audiobook-builder` в каталог персональных skills Codex:
+Клонируйте репозиторий и скопируйте нужные skills в каталог персональных skills Codex:
 
 ```powershell
 git clone https://github.com/wrx74/audiobook_skills.git
 Copy-Item -Recurse -Force .\audiobook_skills\silero-audiobook-builder $env:USERPROFILE\.codex\skills\silero-audiobook-builder
+Copy-Item -Recurse -Force .\audiobook_skills\omnivoice-audiobook-builder $env:USERPROFILE\.codex\skills\omnivoice-audiobook-builder
 ```
 
-После перезапуска Codex skill будет подключаться автоматически к подходящим запросам. Его также можно вызвать явно:
+После перезапуска Codex skills будут подключаться автоматически к подходящим запросам. Их также можно вызвать явно:
 
 ```text
 $silero-audiobook-builder
+$omnivoice-audiobook-builder
 ```
 
 ## Состав
 
-- `SKILL.md` — основной рабочий процесс;
+- `silero-audiobook-builder/` — полный процесс создания аудиокниг с Silero;
+- `omnivoice-audiobook-builder/` — направленная озвучка OmniVoice через VoiceStudio;
+- `SKILL.md` в каждой папке — основной рабочий процесс;
 - `agents/openai.yaml` — метаданные для интерфейса Codex;
-- `references/russian-text-preparation.md` — подготовка русского текста;
-- `references/mastering.md` — сборка и мастеринг;
-- `references/verification-checklist.md` — итоговая проверка.
+- `references/` — инструкции по подготовке текста, API, мастерингу и проверке;
+- `scripts/` — воспроизводимые локальные инструменты синтеза и сборки.
 
 Репозиторий не содержит моделей, книг или сгенерированных аудиофайлов.
