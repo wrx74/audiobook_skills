@@ -1,0 +1,4 @@
+interface:
+  display_name: "Silero Audiobook Builder"
+  short_description: "Создание русских аудиокниг Silero из FB2 и TXT"
+  default_prompt: "Создай проверенную русскую аудиокнигу из указанного текстового файла с помощью Silero."
