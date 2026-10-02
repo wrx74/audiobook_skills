@@ -17,6 +17,33 @@ Skill помогает превращать русские тексты и кн�
 
 Проверенный профиль по умолчанию: Silero `v5_5_ru`, голос `xenia`, 48 кГц mono.
 
+## Где взять Silero
+
+Официальный проект: [snakers4/silero-models](https://github.com/snakers4/silero-models). Список актуальных моделей и голосов хранится в [models.yml](https://github.com/snakers4/silero-models/blob/master/models.yml).
+
+Сначала установите [PyTorch](https://pytorch.org/get-started/locally/) под свою систему и CUDA. Затем модель можно загрузить через PyTorch Hub:
+
+```python
+import torch
+
+model, example_text = torch.hub.load(
+    repo_or_dir="snakers4/silero-models",
+    model="silero_tts",
+    language="ru",
+    speaker="v5_5_ru",
+)
+model.to("cuda")
+```
+
+Репозиторий и модель загружаются при первом запуске, затем используются из локального кэша PyTorch. Альтернативный официальный вариант установки:
+
+```powershell
+pip install silero
+```
+
+Для автономного хранения модель `v5_5_ru` доступна напрямую: [v5_5_ru.pt](https://models.silero.ai/models/tts/ru/v5_5_ru.pt). Голос `xenia` выбирается при синтезе. Сам файл модели, PyTorch и FFmpeg в этот репозиторий не входят.
+
+
 ## Установка
 
 Скопируйте папку `silero-audiobook-builder` в каталог персональных skills Codex:
