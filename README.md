@@ -77,6 +77,11 @@ VoiceStudio, модель OmniVoice и голосовые референсы в 
 [Скачать или прослушать гибридный sample — около 42 секунд](samples/Blindsight-negative-reinforcement-hybrid-Omni-Silero-v1.wav)
 
 Параметры: повествование и Сири — OmniVoice; Саша — Silero `v5_5_ru`, голос `xenia`; WAV PCM mono 48 кГц. Реплики собраны без фейдов, с отдельными голосами персонажей.
+### Только OmniVoice
+
+[Скачать или прослушать одноголосый sample с Сарасти — около 2 минут](samples/Blindsight-sarasti-singlevoice-OmniVoice.wav)
+
+Параметры: только OmniVoice, один стабильный голос, 48 шагов; WAV PCM mono 48 кГц. Фрагмент содержит разговор Сири с Сарасти и вампирскую притчу.
 ## Установка
 
 Клонируйте репозиторий и скопируйте нужные skills в каталог персональных skills Codex:
